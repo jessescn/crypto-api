@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from crawlers.items import CoinItem
+from items import CoinItem
+import json
 
 class CryptoSpider(scrapy.Spider):
     """Spider para raspar os dados das cryptomoedas"""
 
     name = 'crypto'
     start_urls = ['https://coinmarketcap.com/all/views/all/']
-    items = []
 
-    def __init__(self, crypto_coin):
+    def __init__(self, crypto_coin=""):
         self.crypto_coin = crypto_coin
 
     def start_requests(self):
@@ -42,7 +42,5 @@ class CryptoSpider(scrapy.Spider):
                 price=row.css("a.price::attr(data-usd)").get(),
                 circulation_supply=row.css("td.circulating-supply span::attr(data-supply)").get(),
                 volume=row.css("a.volume::attr(data-usd)").get())
-
-            self.items.append(coin)
 
             yield coin
