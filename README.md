@@ -29,7 +29,7 @@ Returns a JSON with  all crytocoins listed inside a coinmarketcap site.
 ```
 
 
-### /crypto/:name
+### /crypto/:symbol
 
 Return a JSON with informations about a specific cryptocoin.
 ```

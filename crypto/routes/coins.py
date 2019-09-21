@@ -10,8 +10,8 @@ def get_coins():
     spider_name = "crypto"
     return execute_spider(spider_name)
 
-@datasets.route('/crypto/<string:name>', methods=['GET'], strict_slashes=False)
-def get_coin(name):
+@datasets.route('/crypto/<string:symbol>', methods=['GET'], strict_slashes=False)
+def get_coin(symbol):
     """Method that returns a list with data about an especific cryptocoin"""
     spider_name = "crypto"
-    return execute_spider(spider_name, name.lower())
+    return execute_spider(spider_name, symbol.lower())

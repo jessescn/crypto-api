@@ -24,13 +24,11 @@ class CryptoSpider(scrapy.Spider):
        scrapy data about one or each
        cryptocoin inside the html
         """
-        table = []
+        table = response.xpath('//td[@class="text-left col-symbol"]/parent::tr')
 
         if self.crypto_coin != "":
-            table.append(response.css('#id-{}'.format(self.crypto_coin)))
+            table = [row for row in table if row.css("td.col-symbol::text").get().lower() == self.crypto_coin.lower()]
 
-        else:
-            table = response.css("tbody tr")
 
         for row in table:
             coin = CoinItem(
