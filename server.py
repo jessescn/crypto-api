@@ -6,6 +6,7 @@ app.register_blueprint(datasets)
 
 @app.route('/')
 def api_status():
+    """Method that returns an message if the API is running"""
     return 'API is on and running!', 200
 
 if __name__ == '__main__':

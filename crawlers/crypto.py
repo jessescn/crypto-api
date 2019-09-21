@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+"""This Module contains a spider to  scrapy data about cryptocoins from coinMarketCap"""
 import scrapy
 from items import CoinItem
-import json
 
 class CryptoSpider(scrapy.Spider):
-    """Spider para raspar os dados das cryptomoedas"""
+    """Spider to scrapy data from coinMarketCap"""
 
     name = 'crypto'
     start_urls = ['https://coinmarketcap.com/all/views/all/']
@@ -13,18 +13,16 @@ class CryptoSpider(scrapy.Spider):
         self.crypto_coin = crypto_coin
 
     def start_requests(self):
-        """Faz as requisições para as URLs  na lista dos 'start_urls"""
+        """Method that makes requests to all URLs within start_urls"""
         for url in self.start_urls:
             yield scrapy.Request(url, callback=self.parse)
 
     def parse(self, response):
-        """Callback para raspagem dos dados
+        """Callback to scrapy data
 
-        Método que recebe o html e faz a ras-
-        pagem dos dados das cryptomoedas,
-        caso o valor da variável 'crypto_coin'
-        for diferente de "", a raspagem é espe-
-        cificada a partir dessa moeda
+       Method that receives an html and
+       scrapy data about one or each
+       cryptocoin inside the html
         """
         table = []
 
