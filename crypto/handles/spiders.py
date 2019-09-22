@@ -16,7 +16,7 @@ def execute_spider(spider_name, coin_name=""):
     informations only about this cryptocoin
     """
     spider_path = 'crawlers/{}.py'.format(spider_name)
-    outputs = ['scrapy', 'runspider', spider_path, '-o', 'output.json', '-s', 'HTTPCACHE_ENABLED=1']
+    outputs = ['scrapy', 'runspider', spider_path, '-o', 'output.json']
     if coin_name != "":
         outputs.append('-a')
         outputs.append("crypto_coin={}".format(coin_name))
